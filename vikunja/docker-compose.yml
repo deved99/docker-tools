@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  api:
+    image: vikunja/api
+    environment:
+      VIKUNJA_DATABASE_HOST: postgres
+      VIKUNJA_DATABASE_TYPE: postgres
+      VIKUNJA_DATABASE_DATABASE: vikunja
+      VIKUNJA_DATABASE_USER: vikunja
+      VIKUNJA_DATABASE_PASSWORD: $VIKUNJA_DATABASE_PASSWORD
+    ports:
+      - 127.0.0.1:3456:3456
+    networks:
+        default:
+        postgres:
+    volumes:
+      - vikunja-data:/app/vikunja/files
+    restart: always
+
+  frontend:
+    image: vikunja/frontend
+    ports:
+      - 127.0.0.1:9003:80
+    environment:
+      VIKUNJA_API_URL: http://127.0.0.1:3456/api/v1
+    networks:
+      default:
+    restart: always
+
+volumes:
+  vikunja-data:
+
+networks:
+  default:
+  postgres:
+    name: postgres_default
+    external: true
