@@ -1,0 +1,3 @@
+POSTGRES_PASSWORD="Password of the root user"
+PGADMIN_EMAIL="Default email of PGAdmin"
+PGADMIN_PASSWORD="Default password of PGAdmin"
