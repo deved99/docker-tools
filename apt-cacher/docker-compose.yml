@@ -1,0 +1,14 @@
+version: "3.9"
+
+volumes:
+  apt-cache-data:
+
+services:
+  cacher:
+    image: sameersbn/apt-cacher-ng
+    ports:
+      - "3142:3142"
+    restart: always
+    volumes:
+      - "apt-cache-data:/var/cache/apt-cacher-ng"
+      - "./01proxy:/etc/apt/apt.conf.d/01proxy"
