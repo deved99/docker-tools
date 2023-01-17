@@ -1,0 +1,14 @@
+version: "3.9"
+
+volumes:
+  prometheus-data:
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.39.1
+    volumes:
+      - "./config/:/etc/prometheus/"
+      - "prometheus-data:/prometheus"
+    ports:
+      - 9005:9090
+    restart: always
