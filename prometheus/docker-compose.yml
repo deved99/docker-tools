@@ -4,11 +4,18 @@ volumes:
   prometheus-data:
 
 services:
-  prometheus:
+    prometheus:
     image: prom/prometheus:v2.39.1
     volumes:
-      - "./config/:/etc/prometheus/"
+      - "./prometheus/:/etc/prometheus/"
       - "prometheus-data:/prometheus"
     ports:
       - 9005:9090
     restart: always
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=180d'
+      # - '--web.enable-admin-api'
