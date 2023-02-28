@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   postgres:
-    image: postgres:15.1
+    image: postgres:15.2
     restart: always
     environment:
       POSTGRES_USER: root
@@ -13,7 +13,7 @@ services:
       - db-data:/var/lib/postgresql/data
 
   pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:6.20
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: $PGADMIN_EMAIL
