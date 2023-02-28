@@ -1,1 +1,2 @@
 VIKUNJA_DATABASE_PASSWORD="Vikunja password of postgres db."
+VIKUNJA_API_URL="URL of the API. Must be reachable from the client."
